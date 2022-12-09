@@ -1,9 +1,9 @@
 <template>
-  <div class="about">
+  <div v-if="false"></div>
+  <div class="about" v-else>
     <h1>Options Api Example</h1>
   </div>
-
-<card-vue :count="count" v-on:clear="count=0"></card-vue>
+<card-vue :count="count" v-on:clear="clearCountValue"></card-vue>
 <div class="col" style="padding:2rem">
 
   <button @click="increment" style="color:green;padding:4px;margin:4px"> Increase</button>
@@ -21,7 +21,7 @@ data(){
   return{
     firstName:ref('EA'),
     lastName:ref('Vijay'),
-    count:ref(0)
+    count:0
   }
   
 },
@@ -33,11 +33,14 @@ beforeMount(){
 mounted(){
  alert('In the options api mounted method') 
 },
+
 methods:{
 increment(){
   this.count++;
 },
-
+clearCountValue(){
+this.count=0;
+},
 reduce(){
   this.count--;
 }
@@ -60,8 +63,7 @@ return 'Count Value is Low';
 
 watch:{
   count(newValue,oldValue){
-    console.log('the old value is ',oldValue);
-    console.log('the new value is ',newValue)
+   
     if(this.count==20){
       alert('Exceeded maximum value ?')
     }
